@@ -1,0 +1,182 @@
+[
+  {
+    "q1": "Доверчивость",
+    "q2": "Осторожность",
+    "count": false,
+    "trait": "trust"
+  },
+  {
+    "q1": "Медлительность",
+    "q2": "Быстрота",
+    "count": true,
+    "trait": "initiative"
+  },
+  {
+    "q1": "Признание",
+    "q2": "Неизвестность",
+    "count": false,
+    "trait": "competence"
+  },
+  {
+    "q1": "Неприметность",
+    "q2": "Яркость",
+    "count": true,
+    "trait": "autonomy"
+  },
+  {
+    "q1": "Открытость",
+    "q2": "Закрытость",
+    "count": false,
+    "trait": "trust"
+  },
+  {
+    "q1": "Зажатость",
+    "q2": "Пластичность",
+    "count": true,
+    "trait": "autonomy"
+  },
+  {
+    "q1": "Полезность",
+    "q2": "Ненужность",
+    "count": false,
+    "trait": "competence"
+  },
+  {
+    "q1": "Принятие",
+    "q2": "Отвержение",
+    "count": false,
+    "trait": "identity"
+  },
+  {
+    "q1": "Развязонность",
+    "q2": "Строгость",
+    "count": true,
+    "trait": "initiative"
+  },
+  {
+    "q1": "Согласованность",
+    "q2": "Разобщенность",
+    "count": false,
+    "trait": "identity"
+  },
+  {
+    "q1": "Достоинства",
+    "q2": "Недостатки",
+    "count": false,
+    "trait": "competence"
+  },
+  {
+    "q1": "Смелость",
+    "q2": "Робость",
+    "count": false,
+    "trait": "initiative"
+  },
+  {
+    "q1": "Свобода",
+    "q2": "Зависимость",
+    "count": false,
+    "trait": "autonomy"
+  },
+  {
+    "q1": "Уныние",
+    "q2": "Радость",
+    "count": true,
+    "trait": "trust"
+  },
+  {
+    "q1": "Гаромничность",
+    "q2": "Противоречивость",
+    "count": false,
+    "trait": "identity"
+  },
+  {
+    "q1": "Предприимчивость",
+    "q2": "Инертность",
+    "count": true,
+    "trait": "initiative"
+  },
+  {
+    "q1": "Скрытность",
+    "q2": "Откровенность",
+    "count": true,
+    "trait": "trust"
+  },
+  {
+    "q1": "Успех",
+    "q2": "Неудача",
+    "count": false,
+    "trait": "competence"
+  },
+  {
+    "q1": "Упорядоченность",
+    "q2": "Спутанность",
+    "count": false,
+    "trait": "identity"
+  },
+  {
+    "q1": "Самостоятельность",
+    "q2": "Подчиненность",
+    "count": false,
+    "trait": "autonomy"
+  },
+  {
+    "q1": "Нападение",
+    "q2": "Защита",
+    "count": false,
+    "trait": "initiative"
+  },
+  {
+    "q1": "Ясность",
+    "q2": "Неопределенность",
+    "count": false,
+    "trait": "identity"
+  },
+  {
+    "q1": "Талант",
+    "q2": "Посредственность",
+    "count": false,
+    "trait": "competence"
+  },
+  {
+    "q1": "Раскрепощенность",
+    "q2": "Скованность",
+    "count": false,
+    "trait": "autonomy"
+  },
+  {
+    "q1": "Близость",
+    "q2": "Дистанцированность",
+    "count": false,
+    "trait": "trust"
+  },
+  {
+    "q1": "Энергичность",
+    "q2": "Вялость",
+    "count": false,
+    "trait": "initiative"
+  },
+  {
+    "q1": "Бездарность",
+    "q2": "Способность",
+    "count": true,
+    "trait": "competence"
+  },
+  {
+    "q1": "Убежденность",
+    "q2": "Сомнение",
+    "count": false,
+    "trait": "autonomy"
+  },
+  {
+    "q1": "Общительность",
+    "q2": "Замкнутость",
+    "count": false,
+    "trait": "trust"
+  },
+  {
+    "q1": "Раздробленность",
+    "q2": "Целостность",
+    "count": true,
+    "trait": "identity"
+  }
+]
