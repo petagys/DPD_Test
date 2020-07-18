@@ -5,7 +5,7 @@ class UserInfoStore {
         this.surname = '';
         this.name = '';
         this.eMail = '';
-        this.dataChecked = false;
+        this.content = 'test';
     }
 
     @action('set user surname')
@@ -29,8 +29,13 @@ class UserInfoStore {
         console.log('Имя: '+this.name);
         console.log('Электронная почта: '+this.eMail);
         if(this.surname && this.name && this.eMail){
-            this.dataChecked = true;
+            this.setContent('test');
         }
+    }
+
+    @action('set page')
+    setContent(val='reg'){
+        this.content = val;
     }
 
 }
@@ -39,5 +44,6 @@ decorate(UserInfoStore, {
     name: observable,
     eMail: observable,
     dataChecked: observable,
+    content: observable,
 });
 export default new UserInfoStore();

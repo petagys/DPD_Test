@@ -5,7 +5,7 @@ import questions from '../utils/questions'
 class TestStore {
     constructor(){
         this.answers = [];
-        this.questions = questions;
+        this.questions = questions.slice(0, 10);
         this.index = 0;
         this.trust = [];
         this.initiative = [];
@@ -25,14 +25,34 @@ class TestStore {
     }
 
     @action('change table page')
-    nextQuestion(val){
-        let obj = {};
-        obj['trait'] = this.questions[this.index].trait;
-        obj['value'] = +val;
-        this.answers.push(obj);
+    nextQuestion(){
+        this.answerPush();
         this.chooseAnswer();
         this.index += 1;
         // console.log(this.answers);
+    }
+
+
+    @action('chosen value')
+    answerPush(){
+        let obj = {};
+        // obj.trait = this.questions[this.index].trait;
+        obj.value = +this.currentSelection;
+        obj.number = this.questions[this.index].number+1;
+        switch (this.questions[this.index].trait) {
+            case 'autonomy':
+                this.autonomy.push(obj);break;
+            case 'identity':
+                this.identity.push(obj);break;
+            case 'competence':
+                this.identity.push(obj);break;
+            case 'trust':
+                this.trust.push(obj);break;
+            case 'initiative':
+                this.initiative.push(obj);break;
+            default:
+                this.answers.push(obj);break;
+        }
     }
 
     // @action('change table page')

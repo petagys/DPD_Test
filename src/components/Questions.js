@@ -38,16 +38,14 @@ const styles = {
 };
 
 @withStyles(styles)
-@inject('test')
+@inject('test', 'user')
 @observer
 class Questions extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            value: ''
-        };
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
         this.nextStage = this.nextStage.bind(this);
+        this.endTest = this.endTest.bind(this);
         // this.handleChangePage = this.handleChangePage.bind(this);
     }
 
@@ -58,6 +56,13 @@ class Questions extends Component {
 
     nextStage(){
         this.props.test.nextQuestion();
+    }
+
+    endTest(){
+        const {test, user} = this.props;
+        test.answerPush();
+        test.chooseAnswer();
+        user.setContent('result');
     }
 
     render() {
@@ -167,8 +172,11 @@ class Questions extends Component {
                 <div className={classes.concept}>{test.questions[test.index].q2}</div>
             </div>
             <div style={{textAlign: 'center', minHeight: '40px'}}>
-                {!!test.currentSelection && <Button onClick={this.nextStage} className={classes.btn} variant="contained">
+                {!!test.currentSelection && test.index < test.questions.length-1 && <Button onClick={this.nextStage} className={classes.btn} variant="contained">
                     Дальше
+                </Button>}
+                {!!test.currentSelection && test.index >= test.questions.length-1 && <Button onClick={this.endTest} className={classes.btn} variant="contained">
+                    Результат
                 </Button>}
             </div>
         </Fragment>
