@@ -45,7 +45,7 @@ class TestStore {
             case 'identity':
                 this.identity.push(obj);break;
             case 'competence':
-                this.identity.push(obj);break;
+                this.competence.push(obj);break;
             case 'trust':
                 this.trust.push(obj);break;
             case 'initiative':

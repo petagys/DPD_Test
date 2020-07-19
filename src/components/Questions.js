@@ -34,6 +34,13 @@ const styles = {
         '&:hover': {
             backgroundColor: '#11a9b4'
         }
+    },
+    btnLast:{
+        backgroundColor: '#DA2F34',
+        color: '#ffffff',
+        '&:hover':{
+            backgroundColor: '#EF2F34'
+        }
     }
 };
 
@@ -175,7 +182,7 @@ class Questions extends Component {
                 {!!test.currentSelection && test.index < test.questions.length-1 && <Button onClick={this.nextStage} className={classes.btn} variant="contained">
                     Дальше
                 </Button>}
-                {!!test.currentSelection && test.index >= test.questions.length-1 && <Button onClick={this.endTest} className={classes.btn} variant="contained">
+                {!!test.currentSelection && test.index >= test.questions.length-1 && <Button onClick={this.endTest} className={classes.btnLast} variant="contained">
                     Результат
                 </Button>}
             </div>
