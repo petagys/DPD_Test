@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component, Fragment} from 'react';
+import Header from "./Layout/Header";
+import Main from "./Layout/Main";
+import {UserInfoStore, TestStore} from "./stores/index";
+import {configure} from "mobx";
+import {Provider} from "mobx-react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const stores = (window.mobxStores = {
+    user: UserInfoStore,
+    test: TestStore
+});
+
+configure({
+    enforceActions: "observed"
+});
+
+class App extends Component {
+    render() {
+        return <Fragment>
+            <Provider {...stores}>
+                <Header title={'Дифференциал психосоциального развития'}/>
+                <Main />
+            </Provider>
+        </Fragment>
+    }
 }
 
 export default App;
