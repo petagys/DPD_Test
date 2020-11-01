@@ -6,13 +6,6 @@ import RadioGroup from "@material-ui/core/RadioGroup/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 import Radio from "@material-ui/core/Radio/Radio";
 import Button from "@material-ui/core/Button";
-// import TableFooter from "@material-ui/core/TableFooter/TableFooter";
-// import TablePagination from "@material-ui/core/TablePagination/TablePagination";
-// import DevTools from "mobx-react-devtools";
-// import Table from "@material-ui/core/Table/Table";
-// import TableBody from "@material-ui/core/TableBody/TableBody";
-// import TableRow from "@material-ui/core/TableRow/TableRow";
-// import TableCell from "@material-ui/core/TableCell/TableCell";
 
 const styles = {
     block: {
@@ -20,13 +13,18 @@ const styles = {
         fontFamily: 'Helvetica'
     },
     radio: {
+        '@media (max-width: 767px)':{
+            padding: '7px'
+        },
         '&$checked': {
             color: '#4B8DF8'
         }
     },
     checked: {},
     concept: {
-        paddingTop: '36px'
+        paddingTop: '36px',
+        width: '50%',
+        textAlign: 'center'
     },
     btn: {
         backgroundColor: '#12D6E3',
@@ -41,6 +39,50 @@ const styles = {
         '&:hover':{
             backgroundColor: '#EF2F34'
         }
+    },
+    fcl:{
+        '@media (min-width: 1600px)':{
+            margin: '0 16px'
+        },
+        '@media (min-width: 1280px) and (max-width: 1599px)':{
+            margin: '0 12px'
+        },
+        '@media (min-width: 1024px) and (max-width: 1279px)':{
+            margin: '0 6px'
+        },
+        '@media (min-width: 768px) and (max-width: 1023px)':{
+            margin: '0 3px'
+        },
+        '@media (max-width: 767px)':{
+            margin: '0'
+        },
+    },
+    q2:{
+        '@media (min-width: 768px)':{
+            display: 'none'
+        },
+    },
+    q2Concept:{
+        '@media (max-width: 767px)':{
+            display: 'none'
+        },
+    },
+    mainContainer:{
+        margin: '20px 0',
+        display: 'flex',
+        '@media (max-width: 767px)':{
+            display: 'block'
+        },
+    },
+    q1Concept:{
+        '@media (max-width: 767px)':{
+            justifyContent: 'space-between',
+            width: '100%',
+            display: 'flex',
+            paddingTop: '8px',
+            paddingBottom: '12px'
+        },
+
     }
 };
 
@@ -56,9 +98,9 @@ class Questions extends Component {
         // this.handleChangePage = this.handleChangePage.bind(this);
     }
 
-    handleChangeRadio(e, i) {
+    handleChangeRadio(e) {
         this.props.test.chooseAnswer(e.target.value);
-        // console.log(e.target.name, e.target.value, i)
+        // console.log(e.target.name, e.target.value)
     };
 
     nextStage(){
@@ -74,109 +116,46 @@ class Questions extends Component {
 
     render() {
         const {classes, test} = this.props;
+        let fcl = [];
+        let index = test.questions[test.index].count ? 1 : 7;
 
+        for (let i = -3;i <= 3;i++){
+            fcl.push(
+                <FormControlLabel
+                    key={index}
+                    labelPlacement="top"
+                    value={index.toString()}
+                    className={classes.fcl}
+                    control={<Radio
+                        classes={{
+                            root: classes.radio,
+                            checked: classes.checked
+                        }}/>}
+                    label={Math.abs(i)}/>
+            );
+            test.questions[test.index].count ? index++ : index--;
+        }
         return <Fragment>
             <div style={{textAlign: 'center', marginTop: '24px'}}>
                 Вопрос {test.index+1} из {test.questions.length}
             </div>
-            <div style={{
-                margin: '20px 0',
-                display: 'flex',
-                justifyContent: 'center',
-            }}>
-                <div className={classes.concept}>{test.questions[test.index].q1}</div>
-                <FormControl component="div">
+            <div className={classes.mainContainer}>
+                <div className={classes.concept + ' ' + classes.q1Concept}>
+                    <div>{test.questions[test.index].q1}</div>
+                    <div className={classes.q2}>{test.questions[test.index].q2}</div>
+                </div>
+                <FormControl style={{width: '100%', alignItems: 'center'}} component="div">
                     <RadioGroup
                         value={test.currentSelection}
                         onChange={(e) => this.handleChangeRadio(e, test.questions[test.index].number)}
                         row name={test.questions[test.index].trait}>
-                        {test.questions[test.index].count ?
-                            <Fragment>
-                                <FormControlLabel
-                                    labelPlacement="top"
-                                    value={'1'}
-                                    control={<Radio
-                                        classes={{
-                                            root: classes.radio,
-                                            checked: classes.checked
-                                        }}/>}
-                                    label={3}/>
-                                <FormControlLabel labelPlacement="top" value={'2'}
-                                                  control={<Radio
-
-                                                      classes={{
-                                                          root: classes.radio,
-                                                          checked: classes.checked
-                                                      }}
-                                                  />} label={2}/>
-                                <FormControlLabel labelPlacement="top" value={'3'}
-                                                  control={<Radio classes={{
-                                                      root: classes.radio,
-                                                      checked: classes.checked
-                                                  }}/>} label={1}/>
-                                <FormControlLabel labelPlacement="top" value={'4'}
-                                                  control={<Radio classes={{
-                                                      root: classes.radio,
-                                                      checked: classes.checked
-                                                  }}/>} label={0}/>
-                                <FormControlLabel labelPlacement="top" value={'5'}
-                                                  control={<Radio classes={{
-                                                      root: classes.radio,
-                                                      checked: classes.checked
-                                                  }}/>} label={1}/>
-                                <FormControlLabel labelPlacement="top" value={'6'}
-                                                  control={<Radio classes={{
-                                                      root: classes.radio,
-                                                      checked: classes.checked
-                                                  }}/>} label={2}/>
-                                <FormControlLabel labelPlacement="top" value={'7'}
-                                                  control={<Radio classes={{
-                                                      root: classes.radio,
-                                                      checked: classes.checked
-                                                  }}/>} label={3}/>
-                            </Fragment>
-                            :
-                            <Fragment>
-                                <FormControlLabel labelPlacement="top" value={'7'} control={<Radio
-                                    classes={{root: classes.radio, checked: classes.checked}}/>}
-                                                  label={3}/>
-                                <FormControlLabel labelPlacement="top" value={'6'}
-                                                  control={<Radio
-                                                      classes={{
-                                                          root: classes.radio,
-                                                          checked: classes.checked
-                                                      }}
-                                                  />} label={2}/>
-                                <FormControlLabel labelPlacement="top" value={'5'}
-                                                  control={<Radio classes={{
-                                                      root: classes.radio,
-                                                      checked: classes.checked
-                                                  }}/>} label={1}/>
-                                <FormControlLabel labelPlacement="top" value={'4'}
-                                                  control={<Radio classes={{
-                                                      root: classes.radio,
-                                                      checked: classes.checked
-                                                  }}/>} label={0}/>
-                                <FormControlLabel labelPlacement="top" value={'3'}
-                                                  control={<Radio classes={{
-                                                      root: classes.radio,
-                                                      checked: classes.checked
-                                                  }}/>} label={1}/>
-                                <FormControlLabel labelPlacement="top" value={'2'}
-                                                  control={<Radio classes={{
-                                                      root: classes.radio,
-                                                      checked: classes.checked
-                                                  }}/>} label={2}/>
-                                <FormControlLabel labelPlacement="top" value={'1'}
-                                                  control={<Radio classes={{
-                                                      root: classes.radio,
-                                                      checked: classes.checked
-                                                  }}/>} label={3}/>
-                            </Fragment>
+                        {fcl.map((item) => {
+                            return item;
+                        })
                         }
                     </RadioGroup>
                 </FormControl>
-                <div className={classes.concept}>{test.questions[test.index].q2}</div>
+                <div className={classes.concept + ' ' + classes.q2Concept}>{test.questions[test.index].q2}</div>
             </div>
             <div style={{textAlign: 'center', minHeight: '40px'}}>
                 {!!test.currentSelection && test.index < test.questions.length-1 && <Button onClick={this.nextStage} className={classes.btn} variant="contained">

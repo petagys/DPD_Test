@@ -115,7 +115,7 @@
     "number": 16,
     "q1": "Скрытность",
     "q2": "Откровенность",
-    "count": true,
+    "count": false,
     "trait": "trust"
   },
   {

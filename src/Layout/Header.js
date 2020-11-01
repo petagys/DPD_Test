@@ -11,7 +11,10 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         marginBottom: '24px',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        '@media (max-width: 767px)':{
+            fontSize: '20px',
+        },
     }
 };
 

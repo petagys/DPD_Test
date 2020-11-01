@@ -29,52 +29,37 @@ class ResultPage extends Component {
     render() {
         const {test, classes} = this.props;
         return <div className={classes.mainBlock}>
-            <Paper className={'paper'} style={{width: '100%'}}>
+            <Paper className={'paper'}>
                 <div className={classes.header}>Результат</div>
                 {!!test.trust.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Доверие:</span>
                     <span className={classes.item}>{test.trust.reduce(
                         (a, b) => (a + b)) / test.trust.length
                     }</span>
-                    {/*{test.trust.map((item, i) => {*/}
-                    {/*    return <span className={classes.item} key={i}>{item.number + "(" + item.value + ");"}</span>;*/}
-                    {/*})}*/}
                 </div>}
                 {!!test.autonomy.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Автономия:</span>
                     <span className={classes.item}>{test.autonomy.reduce(
                         (a, b) => (a + b)) / test.autonomy.length
                     }</span>
-                    {/*{test.autonomy.map((item, i) => {*/}
-                    {/*    return <span className={classes.item} key={i}>{item.number + "(" + item.value + ");"}</span>;*/}
-                    {/*})}*/}
                 </div>}
                 {!!test.initiative.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Инициатива:</span>
                     <span className={classes.item}>{test.initiative.reduce(
                         (a, b) => (a + b)) / test.initiative.length
                     }</span>
-                    {/*{test.initiative.map((item, i) => {*/}
-                    {/*    return <span className={classes.item} key={i}>{item.number + "(" + item.value + ");"}</span>;*/}
-                    {/*})}*/}
                 </div>}
                 {!!test.competence.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Компетентность:</span>
                     <span className={classes.item}>{test.competence.reduce(
                         (a, b) => (a + b)) / test.competence.length
                     }</span>
-                    {/*{test.competence.map((item, i) => {*/}
-                    {/*    return <span className={classes.item} key={i}>{item.number + "(" + item.value + ");"}</span>;*/}
-                    {/*})}*/}
                 </div>}
                 {!!test.identity.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Идентичность:</span>
                     <span className={classes.item}>{test.identity.reduce(
                         (a, b) => (a + b)) / test.identity.length
                     }</span>
-                    {/*{test.identity.map((item, i) => {*/}
-                    {/*    return <span className={classes.item} key={i}>{item.number + "(" + item.value + ");"}</span>;*/}
-                    {/*})}*/}
                 </div>}
                 <div style={{padding: '20px 12px 0', textAlign: 'center', fontSize: '18px'}}>Результаты опроса будут
                     высланы Вам на электронную почту.

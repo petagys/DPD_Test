@@ -19,7 +19,7 @@ class App extends Component {
         return <Fragment>
             <Provider {...stores}>
                 <Header title={'Дифференциал психосоциального развития'}/>
-                <Main />
+                <Main/>
             </Provider>
         </Fragment>
     }

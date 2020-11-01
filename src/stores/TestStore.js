@@ -5,7 +5,7 @@ import questions from '../utils/questions'
 class TestStore {
     constructor(){
         this.answers = [];
-        this.questions = questions.slice(0, 10);
+        this.questions = questions;//.slice(0, 10);
         this.index = 0;
         this.trust = [];
         this.initiative = [];

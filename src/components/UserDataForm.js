@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
 import Paper from "@material-ui/core/Paper/Paper";
-import Grid from "@material-ui/core/Grid/Grid";
 import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
 import {inject, observer} from "mobx-react";
@@ -11,13 +10,27 @@ const styles = {
         padding: '12px'
     },
     block50: {
-        width: '50%'
+        width: '50%',
+        '@media (max-width: 767px)':{
+            width: 'auto',
+        }
     },
     btn: {
         backgroundColor: '#12D6E3',
         color: '#ffffff',
         '&:hover': {
             backgroundColor: '#11a9b4'
+        }
+    },
+    container: {
+        width: '95%',
+        margin: '0 auto',
+        maxWidth: '1000px',
+    },
+    fieldsContainer:{
+        display: 'flex',
+        '@media (max-width: 767px)':{
+            display: 'block'
         }
     }
 };
@@ -54,21 +67,24 @@ class UserDataForm extends Component {
     render() {
         const {classes, user} = this.props;
 
-        return <Grid container justify={"center"}>
-            <Grid item xs={8}>
+        return <div className={classes.container}>
+            {/*<div className={classes.item}>*/}
                 <Paper style={{padding: '12px'}}>
                     <div style={{textAlign: "center", marginBottom: '12px'}}>
                         Для прохождения теста введите свои данные
                     </div>
-                    <div style={{display: 'flex'}}>
+                    <div className={classes.fieldsContainer}>
                         <div className={classes.block + ' ' + classes.block50}>
                             <TextField helperText={!user.surnameFlag && 'Поле Фамилия не должно быть пустым'}
-                                       error={!user.surnameFlag} onChange={this.handleChangeSurname} fullWidth
+                                       error={!user.surnameFlag}
+                                       onChange={this.handleChangeSurname}
+                                       fullWidth
                                        variant={'outlined'} label={'Фамилия'} placeholder={'Иванов'}/>
                         </div>
                         <div className={classes.block + ' ' + classes.block50}>
                             <TextField helperText={!user.nameFlag && 'Поле Имя не должно быть пустым'}
-                                       error={!user.nameFlag} onChange={this.handleChangeName} fullWidth
+                                       error={!user.nameFlag}
+                                       onChange={this.handleChangeName} fullWidth
                                        variant={'outlined'} label={'Имя'} placeholder={'Иван'}/>
                         </div>
                     </div>
@@ -83,8 +99,8 @@ class UserDataForm extends Component {
                         </Button>
                     </div>
                 </Paper>
-            </Grid>
-        </Grid>;
+            {/*</div>*/}
+        </div>;
     }
 }
 

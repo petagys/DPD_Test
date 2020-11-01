@@ -1,6 +1,6 @@
 import {decorate, observable, action} from "mobx"
-import axios from 'axios'
-import {getUserInfo} from "../utils/Requests";
+// import axios from 'axios'
+// import {getUserInfo} from "../utils/Requests";
 
 class UserInfoStore {
     constructor() {
@@ -34,19 +34,19 @@ class UserInfoStore {
         this.nameFlag = !!this.name;
         let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
         this.eMailFlag = re.test(this.eMail);
-        // if (this.surnameFlag && this.nameFlag && this.eMailFlag) {
-        axios({
-            method: 'get',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            data: {},
-            url: '/api/index.php'
-        }).then((res) => {
-            console.log(res);
-        }).catch((err) => {
-            console.warn('Не удалось получить информацию о пользователе', err)
-        })
-        // this.setContent('test');
-        // }
+        if (this.surnameFlag && this.nameFlag && this.eMailFlag) {
+        // axios({
+        //     method: 'get',
+        //     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        //     data: {},
+        //     url: '/api/index.php'
+        // }).then((res) => {
+        //     console.log(res);
+        // }).catch((err) => {
+        //     console.warn('Не удалось получить информацию о пользователе', err)
+        // })
+        this.setContent('test');
+        }
     }
 
     @action('set page')
