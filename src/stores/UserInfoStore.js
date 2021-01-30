@@ -1,5 +1,5 @@
 import {decorate, observable, action} from "mobx"
-// import axios from 'axios'
+import {fioRequest} from '../agent/constants'
 // import {getUserInfo} from "../utils/Requests";
 
 class UserInfoStore {
@@ -11,6 +11,7 @@ class UserInfoStore {
         this.eMail = '';
         this.eMailFlag = true;
         this.content = 'reg';
+        this.humanId = false;
     }
 
     @action('set user surname')
@@ -35,17 +36,15 @@ class UserInfoStore {
         let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
         this.eMailFlag = re.test(this.eMail);
         if (this.surnameFlag && this.nameFlag && this.eMailFlag) {
-        // axios({
-        //     method: 'get',
-        //     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        //     data: {},
-        //     url: '/api/index.php'
-        // }).then((res) => {
-        //     console.log(res);
-        // }).catch((err) => {
-        //     console.warn('Не удалось получить информацию о пользователе', err)
-        // })
-        this.setContent('test');
+        return fioRequest
+            .saveFio(this.name, this.surname, this.eMail)
+            .then(action(res => {
+                this.humanId = res.data;
+                if(this.humanId !== false){
+                    this.setContent('test');
+                }
+            }))
+            .catch(action(err => console.warn(err)))
         }
     }
 
