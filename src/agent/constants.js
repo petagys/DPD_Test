@@ -1,4 +1,4 @@
-import {axiosRequestPost} from './agent'
+import axiosRequestPost from './agent'
 
 export const fioRequest = {
     saveFio: (name, surname, email) => {
