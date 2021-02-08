@@ -13,6 +13,7 @@ class UserInfoStore {
         this.content = 'reg';
         this.humanId = false;
     }
+    
 
     @action('set user surname')
     setSurname(value = '') {

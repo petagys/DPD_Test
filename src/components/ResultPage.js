@@ -33,33 +33,23 @@ class ResultPage extends Component {
                 <div className={classes.header}>Результат</div>
                 {!!test.trust.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Доверие:</span>
-                    <span className={classes.item}>{+(test.trust.reduce(
-                        (a, b) => (a + b)) / test.trust.length).toFixed(2)
-                    }</span>
+                    <span className={classes.item}>{test.trustCount}</span>
                 </div>}
                 {!!test.autonomy.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Автономия:</span>
-                    <span className={classes.item}>{+(test.autonomy.reduce(
-                        (a, b) => (a + b)) / test.autonomy.length).toFixed(2)
-                    }</span>
+                    <span className={classes.item}>{test.autonomyCount}</span>
                 </div>}
                 {!!test.initiative.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Инициатива:</span>
-                    <span className={classes.item}>{+(test.initiative.reduce(
-                        (a, b) => (a + b)) / test.initiative.length).toFixed(2)
-                    }</span>
+                    <span className={classes.item}>{test.initiativeCount}</span>
                 </div>}
                 {!!test.competence.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Компетентность:</span>
-                    <span className={classes.item}>{+(test.competence.reduce(
-                        (a, b) => (a + b)) / test.competence.length).toFixed(2)
-                    }</span>
+                    <span className={classes.item}>{test.competenceCount}</span>
                 </div>}
                 {!!test.identity.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Идентичность:</span>
-                    <span className={classes.item}>{+(test.identity.reduce(
-                        (a, b) => (a + b)) / test.identity.length).toFixed(2)
-                    }</span>
+                    <span className={classes.item}>{test.identityCount}</span>
                 </div>}
                 <div style={{padding: '20px 12px 0', textAlign: 'center', fontSize: '18px'}}>Результаты опроса будут
                     высланы Вам на электронную почту.

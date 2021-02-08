@@ -107,11 +107,12 @@ class Questions extends Component {
         this.props.test.nextQuestion();
     }
 
-    endTest(){
+    async endTest(){
         const {test, user} = this.props;
-        test.answerPush();
-        test.chooseAnswer();
-        user.setContent('result');
+        await test.nextQuestion(false);
+        if(await test.sendAnswers(user.humanId)){
+            await user.setContent('result')
+        }
     }
 
     render() {
