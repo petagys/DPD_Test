@@ -33,27 +33,24 @@ class ResultPage extends Component {
                 <div className={classes.header}>Результат</div>
                 {!!test.trust.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Доверие:</span>
-                    <span className={classes.item}>{test.trustCount}</span>
+                    <span className={classes.item}>{test.trust}</span>
                 </div>}
                 {!!test.autonomy.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Автономия:</span>
-                    <span className={classes.item}>{test.autonomyCount}</span>
+                    <span className={classes.item}>{test.autonomy}</span>
                 </div>}
                 {!!test.initiative.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Инициатива:</span>
-                    <span className={classes.item}>{test.initiativeCount}</span>
+                    <span className={classes.item}>{test.initiative}</span>
                 </div>}
                 {!!test.competence.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Компетентность:</span>
-                    <span className={classes.item}>{test.competenceCount}</span>
+                    <span className={classes.item}>{test.competence}</span>
                 </div>}
                 {!!test.identity.length && <div className={classes.resultBlock}>
                     <span style={{paddingRight: '8px'}}>Идентичность:</span>
-                    <span className={classes.item}>{test.identityCount}</span>
+                    <span className={classes.item}>{test.identity}</span>
                 </div>}
-                <div style={{padding: '20px 12px 0', textAlign: 'center', fontSize: '18px'}}>Результаты опроса будут
-                    высланы Вам на электронную почту.
-                </div>
                 <div style={{padding: '8px 12px', textAlign: 'center', fontSize: '20px'}}>Благодарим Вас за прохождение
                     опроса!
                 </div>

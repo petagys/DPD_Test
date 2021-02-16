@@ -3,6 +3,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Paper from "@material-ui/core/Paper/Paper";
 import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
+import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress"
 import {inject, observer} from "mobx-react";
 
 const styles = {
@@ -18,6 +19,7 @@ const styles = {
     btn: {
         backgroundColor: '#12D6E3',
         color: '#ffffff',
+        margin: '4px 0',
         '&:hover': {
             backgroundColor: '#11a9b4'
         }
@@ -40,14 +42,6 @@ const styles = {
 @observer
 class UserDataForm extends Component {
 
-    constructor(props) {
-        super(props);
-        this.handleChangeSurname = this.handleChangeSurname.bind(this);
-        this.handleChangeName = this.handleChangeName.bind(this);
-        this.handleChangeEmail = this.handleChangeEmail.bind(this);
-        this.startTest = this.startTest.bind(this);
-    }
-
     handleChangeSurname = e => {
         this.props.user.setSurname(e.target.value)
     };
@@ -60,7 +54,7 @@ class UserDataForm extends Component {
         this.props.user.setEmail(e.target.value)
     };
 
-    startTest() {
+    startTest = () => {
         this.props.user.checkUserData();
     }
 
@@ -94,9 +88,9 @@ class UserDataForm extends Component {
                                    placeholder={'ivanov@mail.ru'}/>
                     </div>
                     <div className={classes.block} style={{textAlign: 'center'}}>
-                        <Button onClick={this.startTest} className={classes.btn} variant="contained">
+                        {user.got ? <Button onClick={this.startTest} className={classes.btn} variant="contained">
                             Начать тестирование
-                        </Button>
+                        </Button> : <CircularProgress />}
                     </div>
                 </Paper>
             {/*</div>*/}

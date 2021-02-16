@@ -6,6 +6,7 @@ import RadioGroup from "@material-ui/core/RadioGroup/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 import Radio from "@material-ui/core/Radio/Radio";
 import Button from "@material-ui/core/Button";
+import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress"
 
 const styles = {
     block: {
@@ -92,6 +93,9 @@ const styles = {
 class Questions extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            loading: false
+        }
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
         this.nextStage = this.nextStage.bind(this);
         this.endTest = this.endTest.bind(this);
@@ -110,13 +114,16 @@ class Questions extends Component {
     async endTest(){
         const {test, user} = this.props;
         await test.nextQuestion(false);
+        await this.setState({loading: true})
         if(await test.sendAnswers(user.humanId)){
-            await user.setContent('result')
+            await this.setState({loading: false});
+            await user.setContent('result');
         }
     }
 
     render() {
         const {classes, test} = this.props;
+        const {loading} = this.state;
         let fcl = [];
         let index = test.questions[test.index].count ? 1 : 7;
 
@@ -162,9 +169,12 @@ class Questions extends Component {
                 {!!test.currentSelection && test.index < test.questions.length-1 && <Button onClick={this.nextStage} className={classes.btn} variant="contained">
                     Дальше
                 </Button>}
-                {!!test.currentSelection && test.index >= test.questions.length-1 && <Button onClick={this.endTest} className={classes.btnLast} variant="contained">
+                {!!test.currentSelection && test.index >= test.questions.length-1 && (
+                loading ? 
+                <CircularProgress /> : 
+                <Button onClick={this.endTest} className={classes.btnLast} variant="contained">
                     Результат
-                </Button>}
+                </Button>)}
             </div>
         </Fragment>
 

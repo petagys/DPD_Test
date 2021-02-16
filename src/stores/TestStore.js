@@ -19,6 +19,7 @@ class TestStore {
         this.autonomyCount = null;
         this.identityCount = null;
         this.currentSelection = '';
+        this.got = true;
         // this.page = 0;
         // this.rowsPerPage = 10;
         // this.rows = 10;
@@ -40,6 +41,7 @@ class TestStore {
 
     @action('Send request')
     sendAnswers(id=null){
+        this.got = false;
         if(id !== null){
             const obj = {
                 trust: this.trustCount,
@@ -49,10 +51,16 @@ class TestStore {
                 identity: this.identityCount
             }
             return resultReqeust
-            .save(id, obj)
-            .then(action(res => {
-                console.log('save', res)
-                return 'id' in res.data && Number.isInteger(+res.data.id)
+            .save(/*id*/0, obj)
+            .then(action(({data}) => {
+                // console.log('save', res)
+                let flag = true;
+                'trust' in data ? this.trust = data.trust : flag = false;
+                'initiative' in data ? this.initiative = data.initiative : flag = false;
+                'competence' in data ? this.competence = data.competence : flag = false;
+                'autonomy' in data ? this.autonomy = data.autonomy : flag = false;
+                'identity' in data ? this.identity = data.identity : flag = false;
+                return flag;
             }))
             .catch(action(err => console.warn("Can't save", err)))
         }
