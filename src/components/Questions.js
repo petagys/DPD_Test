@@ -113,11 +113,18 @@ class Questions extends Component {
 
     async endTest(){
         const {test, user} = this.props;
+        const fie = {
+            name: user.name,
+            surname: user.surname,
+            email: user.email,
+        }
         await test.nextQuestion(false);
         await this.setState({loading: true})
-        if(await test.sendAnswers(user.humanId)){
+        if(await test.sendAnswers(fie)){
             await this.setState({loading: false});
             await user.setContent('result');
+        }else{
+            await this.setState({loading: false});
         }
     }
 

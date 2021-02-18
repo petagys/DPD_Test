@@ -40,18 +40,21 @@ class TestStore {
     }
 
     @action('Send request')
-    sendAnswers(id=null){
+    sendAnswers(fio=null){
         this.got = false;
-        if(id !== null){
+        if(fio !== null){
             const obj = {
-                trust: this.trustCount,
-                initiative: this.initiativeCount,
-                competence: this.competenceCount,
-                autonomy: this.autonomyCount,
-                identity: this.identityCount
+                result: {
+                    trust: this.trustCount,
+                    initiative: this.initiativeCount,
+                    competence: this.competenceCount,
+                    autonomy: this.autonomyCount,
+                    identity: this.identityCount
+                },
+                ...fio
             }
             return resultReqeust
-            .save(/*id*/0, obj)
+            .save(obj)
             .then(action(({data}) => {
                 // console.log('save', res)
                 let flag = true;

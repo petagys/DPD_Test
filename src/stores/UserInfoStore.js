@@ -1,5 +1,5 @@
 import {decorate, observable, action} from "mobx"
-import {fioRequest} from '../agent/constants'
+// import {fioRequest} from '../agent/constants'
 // import {getUserInfo} from "../utils/Requests";
 
 class UserInfoStore {
@@ -8,7 +8,7 @@ class UserInfoStore {
         this.surnameFlag = true;
         this.name = '';
         this.nameFlag = true;
-        this.eMail = '';
+        this.email = '';
         this.eMailFlag = true;
         this.content = 'reg';
         this.humanId = false;
@@ -28,7 +28,7 @@ class UserInfoStore {
 
     @action('set user e-mail')
     setEmail(value = '') {
-        this.eMail = value;
+        this.email = value;
     }
 
     @action('check all user data')
@@ -36,22 +36,23 @@ class UserInfoStore {
         this.surnameFlag = !!this.surname;
         this.nameFlag = !!this.name;
         let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
-        this.eMailFlag = re.test(this.eMail);
+        this.eMailFlag = re.test(this.email);
         if (this.surnameFlag && this.nameFlag && this.eMailFlag) {
-            this.got = false;
-            return fioRequest
-                .saveFio(this.name, this.surname, this.eMail)
-                .then(action(res => {
-                    this.humanId = res.data;
-                    this.got = true;
-                    if(this.humanId !== false){
-                        this.setContent('test');
-                    }
-                }))
-                .catch(action(err => {
-                    console.warn(err);
-                    this.got = true;
-                }))
+            this.setContent('test');
+            // this.got = false;
+            // return fioRequest
+            //     .saveFio(this.name, this.surname, this.eMail)
+            //     .then(action(res => {
+            //         this.humanId = res.data;
+            //         this.got = true;
+            //         if(this.humanId !== false){
+            //             this.setContent('test');
+            //         }
+            //     }))
+            //     .catch(action(err => {
+            //         console.warn(err);
+            //         this.got = true;
+            //     }))
             }
     }   
 
@@ -65,7 +66,7 @@ class UserInfoStore {
 decorate(UserInfoStore, {
     surname: observable,
     name: observable,
-    eMail: observable,
+    email: observable,
     dataChecked: observable,
     content: observable,
     nameFlag: observable,

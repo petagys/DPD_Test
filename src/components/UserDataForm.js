@@ -3,7 +3,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Paper from "@material-ui/core/Paper/Paper";
 import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
-import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress"
 import {inject, observer} from "mobx-react";
 
 const styles = {
@@ -88,9 +87,9 @@ class UserDataForm extends Component {
                                    placeholder={'ivanov@mail.ru'}/>
                     </div>
                     <div className={classes.block} style={{textAlign: 'center'}}>
-                        {user.got ? <Button onClick={this.startTest} className={classes.btn} variant="contained">
+                        <Button onClick={this.startTest} className={classes.btn} variant="contained">
                             Начать тестирование
-                        </Button> : <CircularProgress />}
+                        </Button>
                     </div>
                 </Paper>
             {/*</div>*/}
