@@ -176,12 +176,11 @@ class Questions extends Component {
                 {!!test.currentSelection && test.index < test.questions.length-1 && <Button onClick={this.nextStage} className={classes.btn} variant="contained">
                     Дальше
                 </Button>}
-                {!!test.currentSelection && test.index >= test.questions.length-1 && (
-                loading ? 
-                <CircularProgress /> : 
+                {!!test.currentSelection && test.index >= test.questions.length-1 &&  
                 <Button onClick={this.endTest} className={classes.btnLast} variant="contained">
                     Результат
-                </Button>)}
+                </Button>}
+                {loading && <CircularProgress />}
             </div>
         </Fragment>
 
