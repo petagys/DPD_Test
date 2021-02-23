@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper/Paper";
 import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
 import {inject, observer} from "mobx-react";
+import {withRouter} from 'react-router-dom';
 
 const styles = {
     block: {
@@ -54,7 +55,7 @@ class UserDataForm extends Component {
     };
 
     startTest = () => {
-        this.props.user.checkUserData();
+        if(this.props.user.checkUserData()) this.props.history.push('/test');
     }
 
     render() {
@@ -97,4 +98,4 @@ class UserDataForm extends Component {
     }
 }
 
-export default UserDataForm;
+export default withRouter(UserDataForm);

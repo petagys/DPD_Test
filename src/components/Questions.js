@@ -6,7 +6,8 @@ import RadioGroup from "@material-ui/core/RadioGroup/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 import Radio from "@material-ui/core/Radio/Radio";
 import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress"
+import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
+import {withRouter} from 'react-router-dom';
 
 const styles = {
     block: {
@@ -112,7 +113,7 @@ class Questions extends Component {
     }
 
     async endTest(){
-        const {test, user} = this.props;
+        const {test, user, history} = this.props;
         const fie = {
             name: user.name,
             surname: user.surname,
@@ -122,7 +123,8 @@ class Questions extends Component {
         await this.setState({loading: true})
         if(await test.sendAnswers(fie)){
             await this.setState({loading: false});
-            await user.setContent('result');
+            history.push('/result')
+            // await user.setContent('result');
         }else{
             await this.setState({loading: false});
         }
@@ -187,4 +189,4 @@ class Questions extends Component {
     }
 }
 
-export default Questions;
+export default withRouter(Questions);

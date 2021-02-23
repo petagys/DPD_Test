@@ -37,8 +37,9 @@ class UserInfoStore {
         this.nameFlag = !!this.name;
         let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
         this.eMailFlag = re.test(this.email);
-        if (this.surnameFlag && this.nameFlag && this.eMailFlag) {
-            this.setContent('test');
+        return this.surnameFlag && this.nameFlag && this.eMailFlag;
+        // if (this.surnameFlag && this.nameFlag && this.eMailFlag) {
+            // this.setContent('test');
             // this.got = false;
             // return fioRequest
             //     .saveFio(this.name, this.surname, this.eMail)
@@ -53,7 +54,7 @@ class UserInfoStore {
             //         console.warn(err);
             //         this.got = true;
             //     }))
-            }
+            // }
     }   
 
     @action('set page')
