@@ -4,7 +4,7 @@ import axios from 'axios'
 //     'Content-Type': 'application/json'
 // }
 
-export default function axiosRequestPost(url, data) {
+export function axiosRequestPost(url, data) {
     return axios({
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -14,6 +14,15 @@ export default function axiosRequestPost(url, data) {
         //     surname: this.surname,
         //     email: this.eMail
         // },
+        url
+    })
+};
+
+export function axiosRequestGet(url, data) {
+    return axios({
+        method: 'GET',
+        // headers: {'Content-Type': 'application/json'},
+        params: data,
         url
     })
 }

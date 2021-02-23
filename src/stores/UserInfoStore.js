@@ -38,23 +38,6 @@ class UserInfoStore {
         let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
         this.eMailFlag = re.test(this.email);
         return this.surnameFlag && this.nameFlag && this.eMailFlag;
-        // if (this.surnameFlag && this.nameFlag && this.eMailFlag) {
-            // this.setContent('test');
-            // this.got = false;
-            // return fioRequest
-            //     .saveFio(this.name, this.surname, this.eMail)
-            //     .then(action(res => {
-            //         this.humanId = res.data;
-            //         this.got = true;
-            //         if(this.humanId !== false){
-            //             this.setContent('test');
-            //         }
-            //     }))
-            //     .catch(action(err => {
-            //         console.warn(err);
-            //         this.got = true;
-            //     }))
-            // }
     }   
 
     @action('set page')

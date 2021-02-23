@@ -6,6 +6,7 @@ import ResultPage from "../components/ResultPage";
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom'
 import '../css/main.css'
 import { withStyles } from '@material-ui/core';
+import CheckAnswers from '../components/CheckAnswers';
 
 const styles = {
     link: {
@@ -43,6 +44,7 @@ class Main extends Component {
                     <Route path={'/'} exact component={UserDataForm} />
                     <Route path={'/test'} component={TestBody} />
                     <Route path={'/result'} component={ResultPage} />
+                    <Route path={'/answers'} component={CheckAnswers} />
                     <Route path={'*'} render={() => {
                         return <div style={{textAlign: 'center'}}>
                             <img className={classes.img} src='/images/404.svg' alt='404' />
