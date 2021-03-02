@@ -69,7 +69,7 @@ class CheckAnswers extends Component {
     };
 
     render() {
-        const {classes, answer} = this.props;
+        const {classes} = this.props;
         return <Fragment>
             <Paper className={classes.paper}>
                 <div className={classes.form}>
