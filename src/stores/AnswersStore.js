@@ -14,6 +14,7 @@ class AnswersStore {
         return checkHistory
                 .getHistory(form)
                 .then(action(res => {
+                    console.log(res);
                     this.answers = res.data;
                     this.loading = false;
                 }))

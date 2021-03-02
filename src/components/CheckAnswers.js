@@ -12,7 +12,7 @@ const styles = {
         width: '100%'
     },
     tfield: {
-        marginLeft: '16px'
+        marginRight: '16px'
     },
     form: {
         display: 'flex',
@@ -36,11 +36,8 @@ class CheckAnswers extends Component {
     constructor(){
         super();
         this.state = {
-            name: '',
-            email: '',
-            from: '',
-            to: '',
-        }
+            reset: false
+        };
     }
     componentDidMount(){
         this.props.answer.loadResults();
@@ -51,7 +48,13 @@ class CheckAnswers extends Component {
     };
 
     sendForm = () => {
-        console.log('send', this.state);
+        this.props.answer.loadResults(this.state);
+        this.setState({reset: true});
+    };
+
+    resetSearch = () => {
+        this.setState({reset: false});
+        this.props.answer.loadResults();
     };
 
     renderTable = () => {
@@ -70,35 +73,42 @@ class CheckAnswers extends Component {
         return <Fragment>
             <Paper className={classes.paper}>
                 <div className={classes.form}>
-                    <TextField 
-                        onChange={this.handleChange}
-                        name='name'
-                        label="Фамилия или имя" />
-                    <TextField 
-                        onChange={this.handleChange}
-                        className={classes.tfield}
-                        name='email'
-                        label="E-Mail" />
-                    <TextField
-                        label="До"
-                        type="date"
-                        name='from'
-                        onChange={this.handleChange}
-                        className={classes.tfield}
-                        InputLabelProps={{
-                          shrink: true,
-                        }}/>
-                    <TextField
-                        label="После"
-                        type="date"
-                        name='to'
-                        className={classes.tfield}
-                        onChange={this.handleChange}
-                        InputLabelProps={{
-                          shrink: true,
-                        }}/>
-                    <div className={classes.tfield}>
+                    <div>
+                        <TextField 
+                            onChange={this.handleChange}
+                            className={classes.tfield}
+                            name='name'
+                            label="Фамилия или имя" />
+                        <TextField 
+                            onChange={this.handleChange}
+                            className={classes.tfield}
+                            name='email'
+                            label="E-Mail" />
+                    </div>
+                    <div>
+                        <TextField
+                            label="До"
+                            type="date"
+                            name='from'
+                            onChange={this.handleChange}
+                            className={classes.tfield}
+                            InputLabelProps={{
+                              shrink: true,
+                            }}/>
+                        <TextField
+                            label="После"
+                            type="date"
+                            name='to'
+                            className={classes.tfield}
+                            onChange={this.handleChange}
+                            InputLabelProps={{
+                              shrink: true,
+                            }}/>
+                    </div>
+                    <div>
                         <Button className={classes.btn} onClick={this.sendForm}>Поиск</Button>
+                        {this.state.reset && <Button style={{marginLeft: '8px'}} className={classes.btn} onClick={this.resetSearch}>
+                            Сброс</Button>}
                     </div>
                 </div>
             </Paper>

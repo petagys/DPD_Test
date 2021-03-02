@@ -13,6 +13,17 @@ const styles = {
     td: {
         textAlign: 'right',
         fontSize: '18px'
+    },
+    right: {
+        textAlign: 'right',
+        '@media (max-width: 900px)': {
+            display: 'none'
+        }
+    },
+    tdMob: {
+        '@media (min-width: 901px)': {
+            display: 'none'
+        }
     }
 };
 
@@ -20,8 +31,9 @@ const styles = {
 @inject('answer')
 @observer
 class TableResults extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
+        const {classes} = props;
         this.tableHead = [
             {
                 name: 'Тестируемый'
@@ -31,33 +43,27 @@ class TableResults extends Component {
             },
             {
                 name: 'Доверие',
-                style: {
-                    textAlign: 'right',
-                }
+                className: classes.right
             },
             {
                 name: 'Компетенция',
-                style: {
-                    textAlign: 'right',
-                }
+                className: classes.right
             },
             {
                 name: 'Автономия',
-                style: {
-                    textAlign: 'right',
-                }
+                className: classes.right
             },
             {
                 name: 'Идентичность',
-                style: {
-                    textAlign: 'right',
-                }
+                className: classes.right
             },
             {
                 name: 'Инициативность',
-                style: {
-                    textAlign: 'right',
-                }
+                className: classes.right
+            },
+            {
+                name: 'Результаты',
+                className: classes.tdMob
             }
         ]
     }
@@ -83,13 +89,13 @@ class TableResults extends Component {
             <Table>
                 <TableHead>
                     <TableRow>
-                        {this.tableHead.map(({name, style}, i) => <TableCell style={style} key={i}>
+                        {this.tableHead.map(({name, className}, i) => <TableCell className={className} key={i}>
                             {name}</TableCell>)}
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {
-                        answer.answers.map(item => {
+                        Array.isArray(answer.answers) && !!answer.answers.length && answer.answers.map(item => {
                             const {results} = item;
                             return <TableRow key={item.date}>
                                 <TableCell>
@@ -99,26 +105,54 @@ class TableResults extends Component {
                                     </div>
                                     <div>
                                         <div className={classes.info}>E-mail:</div>
-                                        <div>{`${item.surname} ${item.name}`}</div>
+                                        <div>{item.email}</div>
                                     </div>
                                 </TableCell>
                                 <TableCell>
                                     {item.date}
                                 </TableCell>
-                                <TableCell className={classes.td} style={{color: this.renderColor(results.trust)}}>
+                                <TableCell className={`${classes.td} ${classes.right}`} style={{color: this.renderColor(results.trust)}}>
                                     {results.trust}
                                 </TableCell>
-                                <TableCell className={classes.td} style={{color: this.renderColor(results.competence)}}>
+                                <TableCell className={`${classes.td} ${classes.right}`} style={{color: this.renderColor(results.competence)}}>
                                     {results.competence}
                                 </TableCell>
-                                <TableCell className={classes.td} style={{color: this.renderColor(results.autonomy)}}>
+                                <TableCell className={`${classes.td} ${classes.right}`} style={{color: this.renderColor(results.autonomy)}}>
                                     {results.autonomy}
                                 </TableCell>
-                                <TableCell className={classes.td} style={{color: this.renderColor(results.identity)}}>
+                                <TableCell className={`${classes.td} ${classes.right}`} style={{color: this.renderColor(results.identity)}}>
                                     {results.identity}
                                 </TableCell>
-                                <TableCell className={classes.td} style={{color: this.renderColor(results.initiative)}}>
+                                <TableCell className={`${classes.td} ${classes.right}`} style={{color: this.renderColor(results.initiative)}}>
                                     {results.initiative}
+                                </TableCell>
+                                <TableCell className={classes.tdMob} style={{color: this.renderColor(results.initiative)}}>
+                                <div className={classes.block}>
+                                    <div className={classes.info}>Доверие: <span style={{color: this.renderColor(results.trust)}}>
+                                        {results.trust}
+                                    </span></div>
+                                </div>
+                                <div className={classes.block}>
+                                    <div className={classes.info}>Компетенция: <span style={{color: this.renderColor(results.competence)}}>
+                                        {results.competence}
+                                    </span></div>
+                                    
+                                </div>
+                                <div className={classes.block}>
+                                    <div className={classes.info}>Автономия: <span style={{color: this.renderColor(results.autonomy)}}>
+                                        {results.autonomy}
+                                    </span></div>
+                                </div>
+                                <div className={classes.block}>
+                                    <div className={classes.info}>Идентичность: <span style={{color: this.renderColor(results.identity)}}>
+                                        {results.identity}
+                                    </span></div>
+                                </div>
+                                <div className={classes.block}>
+                                    <div className={classes.info}>Инициативность: <span style={{color: this.renderColor(results.initiative)}}>
+                                        {results.initiative}
+                                    </span></div>
+                                </div>
                                 </TableCell>
                             </TableRow>
                         })
